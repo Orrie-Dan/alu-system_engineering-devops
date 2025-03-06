@@ -4,7 +4,6 @@
 echo -e "Updating and installing Nginx.\n"
 sudo apt-get update -y -qq && \
     sudo apt-get install nginx -y
-sudo apt-get install ufw -y
 
 echo -e "\nSetting up some minor stuff.\n"
 
@@ -13,7 +12,6 @@ sudo service nginx start
 
 # Allow HTTP traffic through the firewall
 sudo ufw allow 'Nginx HTTP'
-ufw enable
 
 # Give the user ownership of website files for easy editing
 sudo chown -R "$USER":"$USER" /var/www/html
@@ -23,8 +21,7 @@ sudo chmod -R 755 /var/www
 cp /var/www/html/index.nginx-dan.html /var/www/html/index.nginx-dan.html.bckp
 
 # Create a new index page with "Holberton School"
-echo "Holberton School" | sudo tee /var/www/html/index.nginx-dan.html
-sudo chmod 644 /var/www/html/index.nginx-dan.html
+echo -e "Holberton School" | dd status=none of=/var/www/html/index.nginx-dan.html
 
 
 # Restart Nginx to apply changes
