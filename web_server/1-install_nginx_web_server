@@ -20,10 +20,12 @@ sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www
 
 # Backup default index page
-#cp /var/www/html/index.nginx-dan.html /var/www/html/index.nginx-dan.html.bckp
+cp /var/www/html/index.nginx-dan.html /var/www/html/index.nginx-dan.html.bckp
 
 # Create a new index page with "Holberton School"
-echo -e "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
+echo "Holberton School" | sudo tee /var/www/html/index.nginx-dan.html
+sudo chmod 644 /var/www/html/index.nginx-dan.html
+
 
 # Restart Nginx to apply changes
 sudo service nginx restart
