@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
-# Configures a new ubuntu machine by installing
-# Nginx where it should be listening on port 80
-# Serve a page that would return a Hello World string
-#
+# Configures a new ubuntu machine by installing Nginx
 
 echo -e "Updating and installing Nginx.\n"
 sudo apt-get update -y -qq && \
@@ -63,4 +59,4 @@ sudo service nginx restart
 
 echo -e "\nCompleted. ✅\n"
 
->>>>>>> 0122d97d5c945f2c9dd8e0e5b7ee529366f0cc5c
+

@@ -28,13 +28,9 @@ cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.b
 echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
 
 # Setting up /redirect_me to a youtube video
-sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo sed -i '/server_name _;/a \    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default
+
 
 # Restarting nginx
 sudo service nginx restart
 
-echo -e "\nCompleted.\n"
-<<<<<<< HEAD
-=======
-
->>>>>>> 0122d97d5c945f2c9dd8e0e5b7ee529366f0cc5c
