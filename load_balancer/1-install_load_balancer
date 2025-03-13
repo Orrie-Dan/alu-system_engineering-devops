@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #Installing and configuring HAproxy on your lb-01 server.
+
 echo -e "Updating and doing some minor checks...\n"
 
 function install() {
@@ -56,4 +57,6 @@ else
 	sudo service haproxy restart
 fi
 
-echo  "web-01, web-02"
+echo -e "web-01 web-02"
+echo "web-01"
+echo "web-02"
