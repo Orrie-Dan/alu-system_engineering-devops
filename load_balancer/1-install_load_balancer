@@ -61,18 +61,9 @@ frontend http_front
 # Backend configuration with roundrobin algorithm
 backend http_back
     balance roundrobin
-    server web-01 [STUDENT_ID]-web-01:80 check
-    server web-02 [STUDENT_ID]-web-02:80 check
+    server web-01 6443-web-01:80 check
+    server web-02 6443-web-02:80 check
 EOF
-
-# Replace [STUDENT_ID] with actual student ID if environment variable exists
-if [ -n "$STUDENT_ID" ]; then
-    sudo sed -i "s/\[STUDENT_ID\]/$STUDENT_ID/g" /etc/haproxy/haproxy.cfg
-    echo -e "Configured with STUDENT_ID: $STUDENT_ID\n"
-else
-    echo -e "\nWARNING: STUDENT_ID environment variable not set."
-    echo -e "Please manually replace [STUDENT_ID] in /etc/haproxy/haproxy.cfg with your actual student ID\n"
-fi
 
 # Restart HAProxy to apply changes
 echo -e "Restarting HAProxy service...\n"
@@ -82,8 +73,8 @@ sudo service haproxy restart
 if pgrep -x "haproxy" > /dev/null; then
     echo -e "HAProxy is running successfully!\n"
     echo -e "Load balancer configured to distribute traffic between:"
-    echo -e "  - [STUDENT_ID]-web-01"
-    echo -e "  - [STUDENT_ID]-web-02"
+    echo -e "  - 6443-web-01"
+    echo -e "  - 6443-web-02"
     echo -e "using roundrobin algorithm.\n"
 else
     echo -e "Error: HAProxy failed to start. Please check configuration.\n"
